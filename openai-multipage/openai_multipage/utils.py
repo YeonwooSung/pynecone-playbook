@@ -75,6 +75,12 @@ class State(pc.State):
             else:
                 return []
 
+    def to_gpt_page(self):
+        return pc.redirect("/gpt")
+
+    def to_dalle_page(self):
+        return pc.redirect("/dalle")
+
     def login(self):
         with pc.session() as session:
             user = session.query(User).where(User.username == self.username).first()

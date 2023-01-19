@@ -20,6 +20,15 @@ def index():
     )
 
 
+def home():
+    return pc.center(
+        pc.vstack(
+            pc.button("Try GPT", on_click=State.to_gpt_page, width="100%"),
+            pc.button("Try DALL.E", on_click=State.to_dalle_page, width="100%"),
+        )
+    )
+
+
 def login():
     return pc.center(
         pc.vstack(
@@ -124,7 +133,7 @@ def dalle():
     return pc.center(
         pc.vstack(
             pc.heading("DALL-E", font_size="1.5em"),
-            pc.input(placeholder="Enter a prompt..", on_blur=State.set_prompt),
+            pc.input(placeholder="Enter a prompt..", on_blur=State.set_img_prompt),
             pc.button(
                 "Generate Image",
                 on_click=[State.process_image, State.get_image],
@@ -159,6 +168,7 @@ app = pc.App(state=State)
 app.add_page(index)
 app.add_page(signup)
 app.add_page(login)
+app.add_page(home)
 app.add_page(gpt)
 app.add_page(dalle)
 app.compile()
